@@ -7,5 +7,16 @@
 */
 
 function createCartItemView(config) {
-
+	
+	var view = createTemplateView(config);
+	
+	// links the remove-item button to the cartModel's 
+	// function to remove that item after rendering.
+	view.afterRender = function(clonedTemplate, model) {
+		clonedTemplate.find('.remove-item').click(function(){
+			view.cartModel.removeItem(model);
+		});
+	}; //afterRender(clonedTemplate, model)
+	
+	return view;
 } //createCartItemView()
