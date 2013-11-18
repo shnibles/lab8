@@ -9,4 +9,15 @@
 
 function createCartView(config) {
     
+	config.cartModel = config.model;
+	config.templateView = createCartItemView(config);
+	
+	var view = createTemplateListView(config);
+	
+	// update the total price after rendering
+	view.afterRender = function() {
+		this.totalPrice.html(this.model.getTotalPrice());
+	}; //afterRender()
+	
+	return view;
 } //createCartView()
